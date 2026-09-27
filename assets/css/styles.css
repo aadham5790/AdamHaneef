@@ -140,6 +140,7 @@ nav a:hover {
   background: linear-gradient(90deg, #16a34a, #22c55e);
   color: #07101a;
   font-weight: 700;
+  text-decoration: none;
 }
 
 .hamburger {
@@ -403,6 +404,7 @@ section {
   color: var(--muted);
   background: transparent;
   font-weight: 700;
+  text-decoration: none;
   transition: all 0.18s;
 }
 
@@ -419,6 +421,7 @@ section {
   font-weight: 800;
   border: none;
   box-shadow: 0 10px 30px rgba(34, 197, 94, 0.12);
+  text-decoration: none;
 }
 
 .contact-grid {
