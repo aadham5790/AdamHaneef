@@ -11,6 +11,7 @@
   --text: #e8eef6;
   --text-strong: #ffffff;
   --border: rgba(255, 255, 255, 0.08);
+  --logo-bg: linear-gradient(135deg, #08121a, #0b1626);
   --maxw: 1100px;
 }
 
@@ -27,6 +28,7 @@
   --text: #1e293b;
   --text-strong: #0f172a;
   --border: rgba(0, 0, 0, 0.12);
+  --logo-bg: linear-gradient(135deg, #e2e8f0, #f8fafc);
 }
 
 * {
@@ -42,7 +44,7 @@ html {
 
 html,
 body {
-  height: 100%;
+  min-height: 100%;
 }
 
 body {
@@ -106,7 +108,7 @@ header.scrolled .nav {
   display: grid;
   place-items: center;
   font-weight: 800;
-  background: linear-gradient(135deg, #08121a, #0b1626);
+  background: var(--logo-bg);
   color: #16a34a;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
 }
@@ -158,7 +160,7 @@ nav a:hover {
     right: 22px;
     top: 64px;
     flex-direction: column;
-    background: rgba(2, 6, 23, 0.7);
+    background: var(--surface);
     padding: 12px;
     border-radius: 10px;
   }
