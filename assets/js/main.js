@@ -6,8 +6,10 @@ document.documentElement.classList.remove("no-js");
 const hamburger = $("#hamburger");
 const navLinks = $("#navLinks");
 hamburger &&
+  navLinks &&
   hamburger.addEventListener("click", () => {
-    navLinks.classList.toggle("show");
+    const isOpen = navLinks.classList.toggle("show");
+    hamburger.setAttribute("aria-expanded", String(isOpen));
   });
 
 $$('a[href^="#"]').forEach((a) => {
@@ -19,13 +21,22 @@ $$('a[href^="#"]').forEach((a) => {
     if (!el) return;
     el.scrollIntoView({ behavior: "smooth", block: "start" });
     if (navLinks) navLinks.classList.remove("show");
+    if (hamburger) hamburger.setAttribute("aria-expanded", "false");
   });
+});
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && navLinks && navLinks.classList.contains("show")) {
+    navLinks.classList.remove("show");
+    if (hamburger) hamburger.setAttribute("aria-expanded", "false");
+    hamburger && hamburger.focus();
+  }
 });
 
 (function typing() {
   const el = document.getElementById("typing");
   if (!el) return;
-  const words = ["websites", "tools", "ideas", "products"];
+  const words = ["designs", "photos", "ventures", "art"];
   let wi = 0,
     ci = 0,
     deleting = false;
@@ -78,6 +89,7 @@ revealEls.forEach((el) => observer.observe(el));
           nums.forEach((n) => {
             if (done.has(n)) return;
             done.add(n);
+            if (n.dataset.intervalId) clearInterval(Number(n.dataset.intervalId));
             const target = parseInt(n.dataset.target || "0", 10);
             let current = 0;
             const step = Math.max(1, Math.floor(target / 90));
@@ -86,8 +98,10 @@ revealEls.forEach((el) => observer.observe(el));
               if (current >= target) {
                 n.textContent = target;
                 clearInterval(id);
+                delete n.dataset.intervalId;
               } else n.textContent = current;
             }, 16);
+            n.dataset.intervalId = String(id);
           });
           o.disconnect();
         }
@@ -160,3 +174,40 @@ window.addEventListener("keyup", (e) => {
 
 const yearEl = document.getElementById("year");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+const themeToggle = document.getElementById("themeToggle");
+const root = document.documentElement;
+
+function getStoredTheme() {
+  try {
+    return localStorage.getItem("theme");
+  } catch {
+    return null;
+  }
+}
+
+function applyTheme(theme) {
+  root.setAttribute("data-theme", theme);
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener("click", () => {
+    const current = root.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+    applyTheme(next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch {}
+  });
+}
+
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+  if (!getStoredTheme()) {
+    applyTheme(e.matches ? "dark" : "light");
+  }
+});
+
+const header = document.querySelector("header");
+window.addEventListener("scroll", () => {
+  header?.classList.toggle("scrolled", window.scrollY > 10);
+}, { passive: true });

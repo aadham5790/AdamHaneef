@@ -3,13 +3,26 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Adam Haneef — Developer & Creator</title>
+    <title>Adam Haneef — Entrepreneur & Creator</title>
     <meta
       name="description"
-      content="Adam Haneef — builder and creator focused on craft and impact. See projects, skills and contact."
+      content="Adam Haneef — Entrepreneur, designer, artist, and photographer focused on craft and impact. See projects, skills and contact."
     />
     <meta name="theme-color" content="#0d1117" />
     <noscript><style>.no-js .reveal { opacity: 1; transform: none; }</style></noscript>
+    <script>
+      (function() {
+        var stored = null;
+        try { stored = localStorage.getItem('theme'); } catch(e) {}
+        if (stored === 'light' || stored === 'dark') {
+          document.documentElement.setAttribute('data-theme', stored);
+        } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3EA%3C/text%3E%3C/svg%3E"
@@ -25,16 +38,17 @@
           <div>
             <div class="name">Adam Haneef</div>
             <div class="profile-subtitle">
-              Developer & Creator
+              Entrepreneur & Creator
             </div>
           </div>
         </div>
 
         <nav>
-          <div class="hamburger" id="hamburger" aria-label="Toggle navigation">☰</div>
+          <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">☰</button>
           <div class="links" id="navLinks">
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
           </div>
@@ -49,11 +63,11 @@
           <div>
             <div class="eyebrow">Portfolio</div>
             <h1 class="hero-title" id="intro-title">
-              I build thoughtful products and clean code
+              I design, capture, and build ventures with purpose
             </h1>
             <p class="lead">
-              I design and ship usable, well-crafted digital experiences. I
-              focus on clarity, performance, and long-term maintainability.
+              Self-motivated entrepreneur, designer, artist, and photographer
+              sharing projects and lessons learned so you can achieve too.
               <span class="typing" id="typing" aria-label="typing animation"></span>
             </p>
               <div class="hero-actions">
@@ -75,12 +89,12 @@
             </div>
             <h3 class="profile-name">Adam Haneef</h3>
             <p class="profile-subtitle">
-              Developer & Creator
+              Entrepreneur & Creator
             </p>
 
             <div class="stat-row" aria-hidden="true">
               <div class="stat">
-                <div class="num" data-target="3">0</div>
+                <div class="num" data-target="4">0</div>
                 <div class="lbl">Projects</div>
               </div>
               <div class="stat">
@@ -101,15 +115,18 @@
         <div class="container">
           <div class="section-title">About</div>
           <p class="section-sub">
-            Builder and creator focused on craft and impact.
+            Entrepreneur, designer, artist, and photographer focused on craft and impact.
           </p>
 
           <div class="card section-card">
             <p class="profile-subtitle">
-              I care about making things that work well and last. I focus on
-              clear structure, thoughtful details, and steady improvement over
-              time. I’m interested in practical projects that solve real
-              problems and are pleasant to use.
+              Self-motivated entrepreneur, designer, artist, and photographer.
+              Founder of Saalhaga and Manager at Argo (Bright Brothers Pvt Ltd).
+              Dawah volunteer at United Islamic Society.
+              I share projects and lessons learned so others can achieve their goals.
+            </p>
+            <p class="profile-subtitle tagline">
+              “A little boy who grew up at the heart of Maldives with the love of his family, who tries to find ultimate happiness.”
             </p>
           </div>
         </div>
@@ -143,37 +160,73 @@
           <div class="projects-grid section-grid">
             <article class="proj-card" tabindex="0" aria-labelledby="e1">
               <div class="proj-body">
-                <div class="proj-title" id="e1">Developer</div>
+                <div class="proj-title" id="e1">Manager</div>
                 <div class="proj-desc">
-                  Organization — timeframe
+                  Argo, Bright Brothers Pvt Ltd · 2010 – Present
                 </div>
-                <div class="proj-actions">
-                  <a class="btn-primary" href="#" target="_blank" rel="noopener">Details</a>
+                <div class="proj-desc">
+                  Leading operations and management.
                 </div>
               </div>
             </article>
 
             <article class="proj-card" tabindex="0" aria-labelledby="e2">
               <div class="proj-body">
-                <div class="proj-title" id="e2">Creator</div>
+                <div class="proj-title" id="e2">Security Guard</div>
                 <div class="proj-desc">
-                  Self-directed — timeframe
+                  Dh Atoll Council · 2009 – 2010
                 </div>
-                <div class="proj-actions">
-                  <a class="btn-primary" href="#" target="_blank" rel="noopener">Details</a>
+                <div class="proj-desc">
+                  Public safety and facility security.
                 </div>
               </div>
             </article>
 
             <article class="proj-card" tabindex="0" aria-labelledby="e3">
               <div class="proj-body">
-                <div class="proj-title" id="e3">Contributor</div>
+                <div class="proj-title" id="e3">Cashier</div>
                 <div class="proj-desc">
-                  Projects and collaboration — timeframe
+                  Avasthari · 2007 – 2009
                 </div>
-                <div class="proj-actions">
-                  <a class="btn-primary" href="#" target="_blank" rel="noopener">Details</a>
+                <div class="proj-desc">
+                  Customer service and financial transactions.
                 </div>
+              </div>
+            </article>
+
+            <article class="proj-card" tabindex="0" aria-labelledby="e4">
+              <div class="proj-body">
+                <div class="proj-title" id="e4">Labour</div>
+                <div class="proj-desc">
+                  Faisal Carpentry · 2003 – 2007
+                </div>
+                <div class="proj-desc">
+                  Construction and carpentry support.
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section id="education" class="reveal">
+        <div class="container">
+          <div class="section-title">Education</div>
+          <p class="section-sub">Academic background and training.</p>
+
+          <div class="projects-grid section-grid">
+            <article class="proj-card" tabindex="0" aria-labelledby="ed1">
+              <div class="proj-body">
+                <div class="proj-title" id="ed1">Dh Atoll Education Center</div>
+                <div class="proj-desc">1994 – 2003 · Secondary Education</div>
+              </div>
+            </article>
+
+            <article class="proj-card" tabindex="0" aria-labelledby="ed2">
+              <div class="proj-body">
+                <div class="proj-title" id="ed2">CITM</div>
+                <div class="proj-desc">2011 – 2012 · Technical/Professional Training</div>
               </div>
             </article>
           </div>
@@ -190,68 +243,83 @@
           </p>
 
           <div class="projects-grid section-grid">
-            <!-- Project 1 -->
+            <!-- Design Portfolio -->
             <article class="proj-card" tabindex="0" aria-labelledby="p1">
               <div
                 class="proj-thumb"
                 style="
-                  background-image: url('https://picsum.photos/seed/project1/800/500');
+                  background-image: url('https://picsum.photos/seed/design/800/500');
                 "
               ></div>
               <div class="proj-body">
-                <div class="proj-title" id="p1">Project One</div>
+                <div class="proj-title" id="p1">Design Portfolio</div>
                 <div class="proj-desc">
-                  A focused project built to explore a specific idea end to end,
-                  from structure to delivery.
+                  Brand identity, graphic design, and visual communication
+                  projects for clients and personal work.
                 </div>
                 <div class="proj-actions">
-                  <a class="btn-primary" href="#" target="_blank" rel="noopener">Live Demo</a>
-                  <a class="btn-ghost" href="#" target="_blank" rel="noopener">Source</a>
+                  <a class="btn-primary" href="#" target="_blank" rel="noopener">View Work</a>
+                  <a class="btn-ghost" href="#" target="_blank" rel="noopener">Details</a>
                 </div>
               </div>
             </article>
 
-            <!-- Project 2 -->
+            <!-- Photography -->
             <article class="proj-card" tabindex="0" aria-labelledby="p2">
               <div
                 class="proj-thumb"
                 style="
-                  background-image: url('https://picsum.photos/seed/project2/800/500');
+                  background-image: url('https://picsum.photos/seed/photography/800/500');
                 "
               ></div>
               <div class="proj-body">
-                <div class="proj-title" id="p2">Project Two</div>
+                <div class="proj-title" id="p2">Photography</div>
                 <div class="proj-desc">
-                  A clean implementation emphasizing usability and maintainable
-                  code over unnecessary complexity.
+                  Portrait, landscape, and documentary photography capturing
+                  life and culture in the Maldives.
                 </div>
                 <div class="proj-actions">
-                  <a class="btn-primary" href="#" target="_blank" rel="noopener">Live Demo</a>
-                  <a class="btn-ghost" href="#" target="_blank" rel="noopener">Source</a>
+                  <a class="btn-primary" href="#" target="_blank" rel="noopener">View Gallery</a>
+                  <a class="btn-ghost" href="#" target="_blank" rel="noopener">Details</a>
                 </div>
               </div>
             </article>
 
-            <!-- Project 3 -->
+            <!-- Entrepreneurship Ventures -->
             <article class="proj-card" tabindex="0" aria-labelledby="p3">
               <div
                 class="proj-thumb"
                 style="
-                  background-image: url('https://picsum.photos/seed/project3/800/500');
+                  background-image: url('https://picsum.photos/seed/ventures/800/500');
                 "
               ></div>
               <div class="proj-body">
-                <div class="proj-title" id="p3">Project Three</div>
+                <div class="proj-title" id="p3">Entrepreneurship Ventures</div>
                 <div class="proj-desc">
-                  A practical tool or experiment designed to make a repetitive
-                  task simpler and more reliable.
+                  Founding Saalhaga and managing Argo operations. Building
+                  businesses and creating opportunities.
                 </div>
                 <div class="proj-actions">
-                  <a class="btn-primary" href="#" target="_blank" rel="noopener">Live Demo</a>
-                  <a class="btn-ghost" href="#" target="_blank" rel="noopener">Source</a>
+                  <a class="btn-primary" href="#" target="_blank" rel="noopener">Learn More</a>
+                  <a class="btn-ghost" href="#" target="_blank" rel="noopener">Details</a>
                 </div>
               </div>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMMUNITY -->
+      <section id="community" class="reveal">
+        <div class="container">
+          <div class="section-title">Community & Volunteer</div>
+          <p class="section-sub">Organizations and causes I support.</p>
+
+          <div class="skills-grid section-grid">
+            <span class="skill-pill">Dawah Volunteer — United Islamic Society</span>
+            <span class="skill-pill">Dh Kudahuvadhoo Council</span>
+            <span class="skill-pill">Maldives National University — Kudahuvadhoo Outreach</span>
+            <span class="skill-pill">Mi College — Kudahuvadhoo Outreach</span>
           </div>
         </div>
       </section>
@@ -276,7 +344,7 @@
                 data-emailjs-template="YOUR_EMAILJS_TEMPLATE_ID"
               >
                 <input type="hidden" name="form-name" value="contact" />
-                <input type="hidden" name="bot-field" />
+                <input type="hidden" name="bot-field" id="bot-field" />
                 <label class="sr-only" for="bot-field">Leave blank</label>
                 <label for="name">Your name</label>
                 <input
@@ -324,8 +392,7 @@
             <aside class="card contact-grid-item">
               <h4 class="contact-title">Let's connect</h4>
               <p class="note contact-desc">
-                Email me directly:
-                <a href="mailto:adam@example.com">adam@example.com</a>
+                Use the form to send a message — I reply fast.
               </p>
               <div class="contact-socials">
                 <a class="btn-ghost" href="https://github.com/adhanef" target="_blank" rel="noopener">GitHub</a>
@@ -348,6 +415,23 @@
 
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js">
     </script>
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme" title="Toggle light/dark mode">
+      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
     <script src="assets/js/main.js"></script>
   </body>
 </html>
+
