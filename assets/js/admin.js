@@ -1,5 +1,4 @@
 const STORAGE_KEY = 'portfolio-data';
-const ADMIN_PASSWORD = 'admin123';
 
 const DEFAULT_DATA = {
   hero: {
@@ -72,16 +71,22 @@ function status(msg) {
   if (el) el.textContent = msg || '';
 }
 
-function passwordGate() {
-  if (sessionStorage.getItem('admin-authed') === 'true') return true;
-  const pw = prompt('Enter admin password:');
-  if (pw === ADMIN_PASSWORD) {
-    sessionStorage.setItem('admin-authed', 'true');
-    return true;
+function requireAuth() {
+  try {
+    if (sessionStorage.getItem('admin-authed') !== 'true') {
+      window.location.href = 'login.html';
+      return false;
+    }
+  } catch (e) {
+    window.location.href = 'login.html';
+    return false;
   }
-  if (pw !== null) alert('Incorrect password.');
-  window.location.href = 'index.html';
-  return false;
+  return true;
+}
+
+function logout() {
+  try { sessionStorage.removeItem('admin-authed'); } catch (e) {}
+  window.location.href = 'login.html';
 }
 
 const SECTIONS = [
@@ -338,7 +343,7 @@ function exportJSON() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (!passwordGate()) return;
+  if (!requireAuth()) return;
   renderEditors();
   document.getElementById('saveBtn').addEventListener('click', () => {
     if (saveData(currentData)) {
@@ -351,4 +356,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.open('index.html', '_blank');
   });
   document.getElementById('exportBtn').addEventListener('click', exportJSON);
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) logoutBtn.addEventListener('click', logout);
 });

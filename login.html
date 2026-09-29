@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Login — Portfolio CMS</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    #login-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+    #login-box { width: 100%; max-width: 360px; background: #0d1117; border: 1px solid #30363d; border-radius: 14px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    #login-box h1 { font-size: 1.25rem; margin: 0 0 16px; color: #e6edf3; font-family: system-ui, sans-serif; }
+    #login-box label { display: block; font-size: .85rem; color: #8b949e; margin: 0 0 6px; }
+    #login-box input { width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 8px; color: #e6edf3; font: inherit; box-sizing: border-box; }
+    #login-box button { width: 100%; margin-top: 14px; padding: 10px; border: none; background: #238636; color: #fff; font-weight: 700; border-radius: 8px; cursor: pointer; }
+    #login-box button:hover { background: #2ea043; }
+    #login-error { color: #ff7b72; font-size: .85rem; margin-top: 10px; min-height: 1.2em; }
+  </style>
+</head>
+<body>
+  <div id="login-wrap">
+    <div id="login-box">
+      <h1>Admin Login</h1>
+      <label for="adminPw">Password</label>
+      <input type="password" id="adminPw" autocomplete="off" />
+      <button id="loginBtn">Login</button>
+      <div id="login-error" aria-live="polite"></div>
+    </div>
+  </div>
+  <script>
+    const ADMIN_PASSWORD = 'admin123';
+    const loginBtn = document.getElementById('loginBtn');
+    const pwInput = document.getElementById('adminPw');
+    const errorEl = document.getElementById('login-error');
+    function attemptLogin() {
+      const pw = pwInput.value;
+      if (pw === ADMIN_PASSWORD) {
+        try { sessionStorage.setItem('admin-authed', 'true'); } catch(e) {}
+        window.location.href = 'admin.html';
+        return;
+      }
+      errorEl.textContent = 'Incorrect password.';
+      pwInput.value = '';
+      pwInput.focus();
+    }
+    loginBtn.addEventListener('click', attemptLogin);
+    pwInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') attemptLogin(); });
+  </script>
+</body>
+</html>
