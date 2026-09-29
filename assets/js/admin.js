@@ -40,11 +40,11 @@ const DEFAULT_DATA = {
     'Deployment & Hosting',
     'Problem Solving'
   ],
-  social: {
-    github: 'https://github.com/aadham5790',
-    linkedin: 'https://www.linkedin.com/in/adam-haneef/',
-    facebook: 'https://web.facebook.com/aadham5790/'
-  },
+  social: [
+    { label: 'GitHub', url: 'https://github.com/aadham5790' },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/in/adam-haneef/' },
+    { label: 'Facebook', url: 'https://web.facebook.com/aadham5790/' }
+  ],
   profilePhoto: 'assets/images/IMG_215i5f.jpg'
 };
 
@@ -252,15 +252,10 @@ function buildSkillsPanel(container) {
 }
 
 function buildSocialPanel(container) {
-  const s = currentData.social;
-  container.innerHTML = `
-    <label>GitHub</label><input type="url" data-path="social.github" value="${esc(s.github || '')}" />
-    <label>LinkedIn</label><input type="url" data-path="social.linkedin" value="${esc(s.linkedin || '')}" />
-    <label>Facebook</label><input type="url" data-path="social.facebook" value="${esc(s.facebook || '')}" />
-  `;
-  container.querySelectorAll('input').forEach((el) => {
-    el.addEventListener('input', () => { setField(el.getAttribute('data-path'), el.value); });
-  });
+  buildArrayPanel('social', [
+    { key: 'label', label: 'Label' },
+    { key: 'url', label: 'URL', type: 'url' }
+  ], container);
 }
 
 function buildProjectsPanel(container) {

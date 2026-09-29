@@ -334,25 +334,21 @@ function applyCMSData(data) {
       });
     }
   }
-  const social = data.social || {};
+  const social = Array.isArray(data.social) ? data.social : [];
   const socialLinks = document.querySelector("#contact .contact-socials");
   if (socialLinks) {
-    const map = [
-      { k: "github", l: "GitHub" },
-      { k: "linkedin", l: "LinkedIn" },
-      { k: "facebook", l: "Facebook" }
-    ];
     socialLinks.innerHTML = "";
-    map.forEach((m) => {
-      if (social[m.k]) {
-        const a = document.createElement("a");
-        a.className = "btn-ghost";
-        a.href = social[m.k];
-        a.target = "_blank";
-        a.rel = "noopener";
-        a.textContent = m.l;
-        socialLinks.appendChild(a);
-      }
+    social.forEach((item) => {
+      const url = item && item.url;
+      const label = item && item.label;
+      if (!url || !label) return;
+      const a = document.createElement("a");
+      a.className = "btn-ghost";
+      a.href = url;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = label;
+      socialLinks.appendChild(a);
     });
   }
   if (data.profilePhoto) {
