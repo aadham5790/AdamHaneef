@@ -23,6 +23,16 @@
         }
       })();
     </script>
+    <script>
+      (function() {
+        try {
+          var raw = localStorage.getItem('portfolio-data');
+          if (raw) {
+            window.__CMS_DATA__ = JSON.parse(raw);
+          }
+        } catch(e) {}
+      })();
+    </script>
     <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3EA%3C/text%3E%3C/svg%3E"

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin — Portfolio CMS</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    #cms-admin { padding: 24px; max-width: 960px; margin: 0 auto; font-family: system-ui, sans-serif; color: #e6edf3; }
+    #cms-admin h1 { font-size: 1.25rem; margin: 0 0 16px; }
+    #cms-admin .toolbar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+    #cms-admin .tabs { display: flex; gap: 4px; margin-bottom: 16px; flex-wrap: wrap; }
+    #cms-admin .tab { padding: 8px 14px; border: 1px solid #30363d; background: #161b22; color: #c9d1d9; border-radius: 8px; cursor: pointer; font-size: .9rem; }
+    #cms-admin .tab[aria-selected="true"] { background: #238636; border-color: #238636; color: #fff; }
+    #cms-admin .panel { display: none; background: #0d1117; border: 1px solid #30363d; border-radius: 12px; padding: 16px; }
+    #cms-admin .panel.open { display: block; }
+    #cms-admin label { display: block; font-size: .85rem; color: #8b949e; margin: 12px 0 4px; }
+    #cms-admin input, #cms-admin textarea { width: 100%; padding: 8px 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #e6edf3; font: inherit; box-sizing: border-box; }
+    #cms-admin textarea { min-height: 90px; resize: vertical; }
+    #cms-admin button.btn { padding: 8px 14px; border: 1px solid #30363d; background: #21262d; color: #c9d1d9; border-radius: 8px; cursor: pointer; font-size: .9rem; }
+    #cms-admin button.btn:hover { background: #30363d; }
+    #cms-admin button.primary { background: #238636; border-color: #238636; color: #fff; }
+    #cms-admin button.primary:hover { background: #2ea043; }
+    #cms-admin .row { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+    #cms-admin .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+    #cms-admin .card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 12px; margin: 10px 0; position: relative; }
+    #cms-admin .card .remove { position: absolute; top: 8px; right: 8px; }
+    #cms-admin .pill-input { width: 100%; padding: 8px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; font: inherit; box-sizing: border-box; }
+    #cms-admin .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+    #cms-admin .pill { background: #1f6feb; color: #fff; padding: 2px 8px; border-radius: 999px; font-size: .8rem; }
+    #cms-admin .status { font-size: .85rem; color: #8b949e; margin-left: auto; }
+  </style>
+</head>
+<body>
+  <div id="cms-admin">
+    <h1>Admin Dashboard</h1>
+    <div class="toolbar">
+      <input type="password" id="adminPw" placeholder="Password" autocomplete="off" />
+      <button id="saveBtn" class="btn primary">Save</button>
+      <button id="previewBtn" class="btn">Preview</button>
+      <button id="exportBtn" class="btn">Export JSON</button>
+      <span id="status" class="status"></span>
+    </div>
+    <div class="tabs" id="tabs" role="tablist"></div>
+    <div id="panels"></div>
+  </div>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

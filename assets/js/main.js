@@ -211,3 +211,175 @@ const header = document.querySelector("header");
 window.addEventListener("scroll", () => {
   header?.classList.toggle("scrolled", window.scrollY > 10);
 }, { passive: true });
+
+function applyCMSData(data) {
+  if (!data) return;
+  const hero = data.hero || {};
+  const titleEl = document.getElementById("intro-title");
+  if (titleEl) titleEl.textContent = hero.title || titleEl.textContent;
+  const leadEl = document.querySelector("#hero .lead");
+  if (leadEl && hero.lead) {
+    const typingEl = document.getElementById("typing");
+    leadEl.firstChild.textContent = hero.lead + " ";
+    if (typingEl) leadEl.appendChild(typingEl);
+  }
+  if (hero.typingWords && hero.typingWords.length) {
+    const typingEl = document.getElementById("typing");
+    if (typingEl) window._cmsTypingWords = hero.typingWords;
+  }
+  if (hero.counters) {
+    document.querySelectorAll(".num").forEach((n) => {
+      const lbl = n.nextElementSibling?.textContent?.toLowerCase() || "";
+      if (lbl.includes("project")) n.textContent = hero.counters.projects;
+      else if (lbl.includes("skill")) n.textContent = hero.counters.skills;
+      else if (lbl.includes("focus")) n.textContent = hero.counters.focus;
+    });
+  }
+  const about = data.about || {};
+  const aboutCard = document.querySelector("#about .section-card");
+  if (aboutCard) {
+    const ps = aboutCard.querySelectorAll("p.profile-subtitle");
+    if (ps[0]) ps[0].textContent = about.bio || ps[0].textContent;
+    if (ps[1]) ps[1].textContent = about.tagline || ps[1].textContent;
+  }
+  if (data.skills && data.skills.length) {
+    const grid = document.querySelector("#skills .skills-grid");
+    if (grid) {
+      grid.innerHTML = "";
+      data.skills.forEach((s) => {
+        const span = document.createElement("span");
+        span.className = "skill-pill";
+        span.textContent = s;
+        grid.appendChild(span);
+      });
+    }
+  }
+  if (data.experience && data.experience.length) {
+    const expSection = document.querySelector("#experience .projects-grid");
+    if (expSection) {
+      expSection.innerHTML = "";
+      data.experience.forEach((item, i) => {
+        const art = document.createElement("article");
+        art.className = "proj-card";
+        art.tabIndex = 0;
+        art.setAttribute("aria-labelledby", "e" + (i + 1));
+        art.innerHTML = `<div class="proj-body"><div class="proj-title" id="e${i + 1}">${item.role || ""}</div><div class="proj-desc">${[item.org, item.period].filter(Boolean).join(" · ")}</div><div class="proj-desc">${item.desc || ""}</div></div>`;
+        expSection.appendChild(art);
+      });
+    }
+  }
+  if (data.education && data.education.length) {
+    const edSection = document.querySelector("#education .projects-grid");
+    if (edSection) {
+      edSection.innerHTML = "";
+      data.education.forEach((item, i) => {
+        const art = document.createElement("article");
+        art.className = "proj-card";
+        art.tabIndex = 0;
+        art.setAttribute("aria-labelledby", "ed" + (i + 1));
+        art.innerHTML = `<div class="proj-body"><div class="proj-title" id="ed${i + 1}">${item.name || ""}</div><div class="proj-desc">${[item.period, item.desc].filter(Boolean).join(" · ")}</div></div>`;
+        edSection.appendChild(art);
+      });
+    }
+  }
+  if (data.projects && data.projects.length) {
+    const projGrid = document.querySelector("#projects .projects-grid");
+    if (projGrid) {
+      projGrid.innerHTML = "";
+      data.projects.forEach((p, i) => {
+        const art = document.createElement("article");
+        art.className = "proj-card";
+        art.tabIndex = 0;
+        art.setAttribute("aria-labelledby", "p" + (i + 1));
+        const thumb = document.createElement("div");
+        thumb.className = "proj-thumb";
+        thumb.style.backgroundImage = p.thumb ? "url('" + p.thumb + "')" : "";
+        const body = document.createElement("div");
+        body.className = "proj-body";
+        body.innerHTML = `<div class="proj-title" id="p${i + 1}">${p.title || ""}</div><div class="proj-desc">${p.desc || ""}</div>`;
+        const actions = document.createElement("div");
+        actions.className = "proj-actions";
+        if (p.links && p.links.length >= 2) {
+          const a1 = document.createElement("a");
+          a1.className = "btn-primary";
+          a1.href = p.links[1] || "#";
+          a1.target = "_blank";
+          a1.rel = "noopener";
+          a1.textContent = p.links[0] || "View";
+          actions.appendChild(a1);
+          const a2 = document.createElement("a");
+          a2.className = "btn-ghost";
+          a2.href = p.links[1] || "#";
+          a2.target = "_blank";
+          a2.rel = "noopener";
+          a2.textContent = "Details";
+          actions.appendChild(a2);
+        }
+        body.appendChild(actions);
+        art.appendChild(thumb);
+        art.appendChild(body);
+        projGrid.appendChild(art);
+      });
+    }
+  }
+  if (data.community && data.community.length) {
+    const commGrid = document.querySelector("#community .skills-grid");
+    if (commGrid) {
+      commGrid.innerHTML = "";
+      data.community.forEach((c) => {
+        const span = document.createElement("span");
+        span.className = "skill-pill";
+        span.textContent = c;
+        commGrid.appendChild(span);
+      });
+    }
+  }
+  const social = data.social || {};
+  const socialLinks = document.querySelector("#contact .contact-socials");
+  if (socialLinks) {
+    const map = [
+      { k: "github", l: "GitHub" },
+      { k: "linkedin", l: "LinkedIn" },
+      { k: "facebook", l: "Facebook" }
+    ];
+    socialLinks.innerHTML = "";
+    map.forEach((m) => {
+      if (social[m.k]) {
+        const a = document.createElement("a");
+        a.className = "btn-ghost";
+        a.href = social[m.k];
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = m.l;
+        socialLinks.appendChild(a);
+      }
+    });
+  }
+  if (data.profilePhoto) {
+    const img = document.querySelector(".avatar img");
+    if (img) img.src = data.profilePhoto;
+  }
+}
+
+if (window.__CMS_DATA__) {
+  applyCMSData(window.__CMS_DATA__);
+  if (window._cmsTypingWords && window._cmsTypingWords.length) {
+    const typingEl = document.getElementById("typing");
+    if (typingEl) {
+      const words = window._cmsTypingWords;
+      let wi = 0, ci = 0, deleting = false;
+      function step() {
+        const word = words[wi];
+        typingEl.textContent = word.slice(0, ci);
+        if (!deleting) {
+          if (ci < word.length) { ci++; setTimeout(step, 80); }
+          else { deleting = true; setTimeout(step, 900); }
+        } else {
+          if (ci > 0) { ci--; setTimeout(step, 40); }
+          else { deleting = false; wi = (wi + 1) % words.length; setTimeout(step, 240); }
+        }
+      }
+      step();
+    }
+  }
+}
