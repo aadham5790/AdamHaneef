@@ -299,17 +299,17 @@ function applyCMSData(data) {
         body.innerHTML = `<div class="proj-title" id="p${i + 1}">${p.title || ""}</div><div class="proj-desc">${p.desc || ""}</div>`;
         const actions = document.createElement("div");
         actions.className = "proj-actions";
-        if (p.links && p.links.length >= 2) {
+        if ((p.linkUrl || p.linkLabel)) {
           const a1 = document.createElement("a");
           a1.className = "btn-primary";
-          a1.href = p.links[1] || "#";
+          a1.href = p.linkUrl || "#";
           a1.target = "_blank";
           a1.rel = "noopener";
-          a1.textContent = p.links[0] || "View";
+          a1.textContent = p.linkLabel || "View";
           actions.appendChild(a1);
           const a2 = document.createElement("a");
           a2.className = "btn-ghost";
-          a2.href = p.links[1] || "#";
+          a2.href = p.linkUrl || "#";
           a2.target = "_blank";
           a2.rel = "noopener";
           a2.textContent = "Details";

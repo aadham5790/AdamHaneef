@@ -22,9 +22,9 @@ const DEFAULT_DATA = {
     { name: 'CITM', period: '2011 – 2012', desc: 'Technical/Professional Training' }
   ],
   projects: [
-    { title: 'Design Portfolio', desc: 'Brand identity, graphic design, and visual communication projects for clients and personal work.', thumb: 'https://picsum.photos/seed/design/800/500', links: ['View Work', '#'] },
-    { title: 'Photography', desc: 'Portrait, landscape, and documentary photography capturing life and culture in the Maldives.', thumb: 'https://picsum.photos/seed/photography/800/500', links: ['View Gallery', '#'] },
-    { title: 'Entrepreneurship Ventures', desc: 'Founding Saalhaga and managing Argo operations. Building businesses and creating opportunities.', thumb: 'https://picsum.photos/seed/ventures/800/500', links: ['Learn More', '#'] }
+    { title: 'Design Portfolio', desc: 'Brand identity, graphic design, and visual communication projects for clients and personal work.', thumb: 'https://picsum.photos/seed/design/800/500', linkLabel: 'View Work', linkUrl: '#' },
+    { title: 'Photography', desc: 'Portrait, landscape, and documentary photography capturing life and culture in the Maldives.', thumb: 'https://picsum.photos/seed/photography/800/500', linkLabel: 'View Gallery', linkUrl: '#' },
+    { title: 'Entrepreneurship Ventures', desc: 'Founding Saalhaga and managing Argo operations. Building businesses and creating opportunities.', thumb: 'https://picsum.photos/seed/ventures/800/500', linkLabel: 'Learn More', linkUrl: '#' }
   ],
   community: [
     'Dawah Volunteer — United Islamic Society',
@@ -268,7 +268,8 @@ function buildProjectsPanel(container) {
     { key: 'title', label: 'Title' },
     { key: 'desc', label: 'Description', tag: 'textarea' },
     { key: 'thumb', label: 'Thumbnail URL' },
-    { key: 'links', label: 'Links (label,url per line)' }
+    { key: 'linkLabel', label: 'Link Label' },
+    { key: 'linkUrl', label: 'Link URL', type: 'url' }
   ], container);
 }
 
