@@ -51,7 +51,12 @@ const DEFAULT_DATA = {
 function loadData() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(DEFAULT_DATA));
+    const data = raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(DEFAULT_DATA));
+    if (data.social && !Array.isArray(data.social)) {
+      const mapped = Object.entries(data.social).map(([k, v]) => ({ label: k.charAt(0).toUpperCase() + k.slice(1), url: v }));
+      data.social = mapped;
+    }
+    return data;
   } catch {
     return JSON.parse(JSON.stringify(DEFAULT_DATA));
   }
@@ -140,7 +145,7 @@ function buildArrayPanel(key, fields, container) {
   const addBtn = document.createElement('button');
   addBtn.type = 'button';
   addBtn.className = 'btn';
-  addBtn.textContent = '+ Add ' + key.slice(0, -1);
+  addBtn.textContent = '+ Add ' + key;
   addBtn.style.marginBottom = '10px';
   container.appendChild(addBtn);
 
