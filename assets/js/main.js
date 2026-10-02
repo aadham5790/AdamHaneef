@@ -36,7 +36,14 @@ window.addEventListener("keydown", (e) => {
 (function typing() {
   const el = document.getElementById("typing");
   if (!el) return;
-  const words = ["designs", "photos", "ventures", "art"];
+  const cmsWords =
+    window.__CMS_DATA__ &&
+    Array.isArray(window.__CMS_DATA__.hero?.typingWords) &&
+    window.__CMS_DATA__.hero.typingWords.length
+      ? window.__CMS_DATA__.hero.typingWords
+      : null;
+  const words =
+    cmsWords || ["designs", "photos", "ventures", "art"];
   let wi = 0,
     ci = 0,
     deleting = false;
@@ -223,16 +230,19 @@ function applyCMSData(data) {
     leadEl.firstChild.textContent = hero.lead + " ";
     if (typingEl) leadEl.appendChild(typingEl);
   }
-  if (hero.typingWords && hero.typingWords.length) {
-    const typingEl = document.getElementById("typing");
-    if (typingEl) window._cmsTypingWords = hero.typingWords;
-  }
   if (hero.counters) {
     document.querySelectorAll(".num").forEach((n) => {
       const lbl = n.nextElementSibling?.textContent?.toLowerCase() || "";
-      if (lbl.includes("project")) n.textContent = hero.counters.projects;
-      else if (lbl.includes("skill")) n.textContent = hero.counters.skills;
-      else if (lbl.includes("focus")) n.textContent = hero.counters.focus;
+      if (lbl.includes("project")) {
+        n.dataset.target = hero.counters.projects;
+        n.textContent = hero.counters.projects;
+      } else if (lbl.includes("skill")) {
+        n.dataset.target = hero.counters.skills;
+        n.textContent = hero.counters.skills;
+      } else if (lbl.includes("focus")) {
+        n.dataset.target = hero.counters.focus;
+        n.textContent = hero.counters.focus;
+      }
     });
   }
   const about = data.about || {};
@@ -359,23 +369,4 @@ function applyCMSData(data) {
 
 if (window.__CMS_DATA__) {
   applyCMSData(window.__CMS_DATA__);
-  if (window._cmsTypingWords && window._cmsTypingWords.length) {
-    const typingEl = document.getElementById("typing");
-    if (typingEl) {
-      const words = window._cmsTypingWords;
-      let wi = 0, ci = 0, deleting = false;
-      function step() {
-        const word = words[wi];
-        typingEl.textContent = word.slice(0, ci);
-        if (!deleting) {
-          if (ci < word.length) { ci++; setTimeout(step, 80); }
-          else { deleting = true; setTimeout(step, 900); }
-        } else {
-          if (ci > 0) { ci--; setTimeout(step, 40); }
-          else { deleting = false; wi = (wi + 1) % words.length; setTimeout(step, 240); }
-        }
-      }
-      step();
-    }
-  }
 }

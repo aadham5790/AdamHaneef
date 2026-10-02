@@ -56,6 +56,18 @@ function loadData() {
       const mapped = Object.entries(data.social).map(([k, v]) => ({ label: k.charAt(0).toUpperCase() + k.slice(1), url: v }));
       data.social = mapped;
     }
+    // Fill missing sections/fields with defaults so a partial or legacy saved blob can't crash the panel
+    for (const key of Object.keys(DEFAULT_DATA)) {
+      if (data[key] === undefined || data[key] === null) {
+        data[key] = JSON.parse(JSON.stringify(DEFAULT_DATA[key]));
+      }
+    }
+    data.hero = data.hero || {};
+    for (const key of Object.keys(DEFAULT_DATA.hero)) {
+      if (data.hero[key] === undefined || data.hero[key] === null) {
+        data.hero[key] = JSON.parse(JSON.stringify(DEFAULT_DATA.hero[key]));
+      }
+    }
     return data;
   } catch {
     return JSON.parse(JSON.stringify(DEFAULT_DATA));
@@ -211,7 +223,7 @@ function buildHeroPanel(container) {
       const path = el.getAttribute('data-path');
       if (path === 'hero.typingWords') {
         setField(path, el.value.split(',').map((s) => s.trim()).filter(Boolean));
-      } else if (/^hero\.counters\.\d+$/.test(path)) {
+      } else if (/^hero\.counters\.(projects|skills|focus)$/.test(path)) {
         setField(path, parseInt(el.value || '0', 10) || 0);
       } else {
         setField(path, el.value);
