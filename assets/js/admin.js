@@ -3,9 +3,9 @@ const STORAGE_KEY = 'portfolio-data';
 const DEFAULT_DATA = {
   hero: {
     title: 'I design, capture, and build ventures with purpose',
-    lead: 'Self-motivated entrepreneur, designer, artist, and photographer sharing projects and lessons learned so you can achieve too.',
+    lead: 'Self-motivated entrepreneur, designer, artist, and photographer sharing projects and lessons learned — I make',
     typingWords: ['designs', 'photos', 'ventures', 'art'],
-    counters: { projects: 4, skills: 5, focus: 100 }
+    counters: { projects: 3, skills: 6, focus: 100 }
   },
   about: {
     bio: 'Self-motivated entrepreneur, designer, artist, and photographer. Founder of Saalhaga and Manager at Argo (Bright Brothers Pvt Ltd). Dawah volunteer at United Islamic Society. I share projects and lessons learned so others can achieve their goals.',
