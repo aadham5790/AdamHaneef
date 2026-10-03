@@ -29,6 +29,19 @@
     #cms-admin .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
     #cms-admin .pill { background: #1f6feb; color: #fff; padding: 2px 8px; border-radius: 999px; font-size: .8rem; }
     #cms-admin .status { font-size: .85rem; color: #8b949e; margin-left: auto; }
+  #cms-admin .status.ok { color: #3fb950; }
+  #cms-admin .status.err { color: #ff7b72; }
+  #cms-admin .status.warn { color: #d29922; }
+  #cms-admin input.invalid, #cms-admin textarea.invalid { border-color: #ff7b72; }
+  #cms-admin .img-preview { width: 96px; height: 64px; object-fit: cover; border-radius: 8px; border: 1px solid #30363d; background: #161b22; vertical-align: middle; }
+  #cms-admin .hint { font-size: .8rem; color: #8b949e; margin: 10px 0 0; line-height: 1.4; }
+  #cms-admin .hint.ok { color: #3fb950; }
+  #cms-admin .hint.err { color: #ff7b72; }
+  @media (max-width: 640px) {
+    #cms-admin { padding: 16px; }
+    #cms-admin .row, #cms-admin .row-3 { grid-template-columns: 1fr; }
+    #cms-admin .toolbar .btn { flex: 1 1 auto; }
+  }
   </style>
 </head>
 <body>
@@ -37,9 +50,13 @@
     <div class="toolbar">
       <button id="saveBtn" class="btn primary">Save</button>
       <button id="previewBtn" class="btn">Preview</button>
+      <button id="publishBtn" class="btn">Publish</button>
+      <button id="importBtn" class="btn">Import</button>
       <button id="exportBtn" class="btn">Export JSON</button>
+      <button id="undoBtn" class="btn" hidden>Undo</button>
       <button id="logoutBtn" class="btn">Logout</button>
-      <span id="status" class="status"></span>
+      <span id="status" class="status" aria-live="polite"></span>
+      <input type="file" id="importFile" accept="application/json,.json" hidden />
     </div>
     <div class="tabs" id="tabs" role="tablist"></div>
     <div id="panels"></div>

@@ -1,0 +1,47 @@
+{
+  "hero": {
+    "title": "I design, capture, and build ventures with purpose",
+    "lead": "Self-motivated entrepreneur, designer, artist, and photographer sharing projects and lessons learned — I make",
+    "typingWords": ["designs", "photos", "ventures", "art"],
+    "counters": { "projects": 3, "skills": 6, "focus": 100 }
+  },
+  "about": {
+    "bio": "Self-motivated entrepreneur, designer, artist, and photographer. Founder of Saalhaga and Manager at Argo (Bright Brothers Pvt Ltd). Dawah volunteer at United Islamic Society. I share projects and lessons learned so others can achieve their goals.",
+    "tagline": "A little boy who grew up at the heart of Maldives with the love of his family, who tries to find ultimate happiness."
+  },
+  "experience": [
+    { "role": "Manager", "org": "Argo, Bright Brothers Pvt Ltd", "period": "2010 – Present", "desc": "Leading operations and management." },
+    { "role": "Security Guard", "org": "Dh Atoll Council", "period": "2009 – 2010", "desc": "Public safety and facility security." },
+    { "role": "Cashier", "org": "Avasthari", "period": "2007 – 2009", "desc": "Customer service and financial transactions." },
+    { "role": "Labour", "org": "Faisal Carpentry", "period": "2003 – 2007", "desc": "Construction and carpentry support." }
+  ],
+  "education": [
+    { "name": "Dh Atoll Education Center", "period": "1994 – 2003", "desc": "Secondary Education" },
+    { "name": "CITM", "period": "2011 – 2012", "desc": "Technical/Professional Training" }
+  ],
+  "projects": [
+    { "title": "Design Portfolio", "desc": "Brand identity, graphic design, and visual communication projects for clients and personal work.", "thumb": "https://picsum.photos/seed/design/800/500", "linkLabel": "View Work", "linkUrl": "#" },
+    { "title": "Photography", "desc": "Portrait, landscape, and documentary photography capturing life and culture in the Maldives.", "thumb": "https://picsum.photos/seed/photography/800/500", "linkLabel": "View Gallery", "linkUrl": "#" },
+    { "title": "Entrepreneurship Ventures", "desc": "Founding Saalhaga and managing Argo operations. Building businesses and creating opportunities.", "thumb": "https://picsum.photos/seed/ventures/800/500", "linkLabel": "Learn More", "linkUrl": "#" }
+  ],
+  "community": [
+    "Dawah Volunteer — United Islamic Society",
+    "Dh Kudahuvadhoo Council",
+    "Maldives National University — Kudahuvadhoo Outreach",
+    "Mi College — Kudahuvadhoo Outreach"
+  ],
+  "skills": [
+    "HTML & Accessibility",
+    "CSS & Responsive Design",
+    "JavaScript",
+    "Git",
+    "Deployment & Hosting",
+    "Problem Solving"
+  ],
+  "social": [
+    { "label": "GitHub", "url": "https://github.com/aadham5790" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/adam-haneef/" },
+    { "label": "Facebook", "url": "https://web.facebook.com/aadham5790/" }
+  ],
+  "profilePhoto": "assets/images/IMG_215i5f.jpg"
+}

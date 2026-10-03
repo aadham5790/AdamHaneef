@@ -370,3 +370,4 @@ function applyCMSData(data) {
 if (window.__CMS_DATA__) {
   applyCMSData(window.__CMS_DATA__);
 }
+window.addEventListener("cms-data-ready", (e) => applyCMSData(e.detail));
