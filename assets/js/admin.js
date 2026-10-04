@@ -25,7 +25,7 @@ const DEFAULT_DATA = {
   ],
   education: [
     { name: 'Dh Atoll Education Center', period: '1994 – 2003', desc: 'Secondary Education' },
-    { name: 'CITM', period: '2011 – 2012', desc: 'Technical/Professional Training' }
+    { name: 'CITM', period: '2011 – 2012', desc: 'Diploma in Information Technology' }
   ],
   projects: [
     { title: 'Design Portfolio', desc: 'Brand identity, graphic design, and visual communication projects for clients and personal work.', thumb: 'https://picsum.photos/seed/design/800/500', linkLabel: 'View Work', linkUrl: '#' },
