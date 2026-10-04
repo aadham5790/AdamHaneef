@@ -30,9 +30,9 @@ const DEFAULT_DATA = {
     { name: 'Javaabu Academy', period: '2022', desc: 'Social Media Marketing Masterclass' }
   ],
   projects: [
-    { title: 'Design Portfolio', desc: 'Brand identity, graphic design, and visual communication projects for clients and personal work.', thumb: 'https://picsum.photos/seed/design/800/500', linkLabel: 'View Work', linkUrl: '#' },
-    { title: 'Photography', desc: 'Portrait, landscape, and documentary photography capturing life and culture in the Maldives.', thumb: 'https://picsum.photos/seed/photography/800/500', linkLabel: 'View Gallery', linkUrl: '#' },
-    { title: 'Entrepreneurship Ventures', desc: 'Founding Saalhanga and managing Argo operations. Building businesses and creating opportunities.', thumb: 'https://picsum.photos/seed/ventures/800/500', linkLabel: 'Learn More', linkUrl: '#' }
+    { title: 'Design Portfolio', desc: 'Brand identity, graphic design, and visual communication projects for clients and personal work.', thumb: 'https://picsum.photos/seed/design/800/500', demoUrl: '', sourceUrl: '' },
+    { title: 'Photography', desc: 'Portrait, landscape, and documentary photography capturing life and culture in the Maldives.', thumb: 'https://picsum.photos/seed/photography/800/500', demoUrl: '', sourceUrl: '' },
+    { title: 'Entrepreneurship Ventures', desc: 'Founding Saalhanga and managing Argo operations. Building businesses and creating opportunities.', thumb: 'https://picsum.photos/seed/ventures/800/500', demoUrl: '', sourceUrl: '' }
   ],
   community: [
     'Dawah Volunteer — United Islamic Society',
@@ -74,6 +74,14 @@ function normalizeData(data) {
   }
   if (!data.hero.counters || typeof data.hero.counters !== 'object') {
     data.hero.counters = JSON.parse(JSON.stringify(DEFAULT_DATA.hero.counters));
+  }
+  if (Array.isArray(data.projects)) {
+    for (const p of data.projects) {
+      if (p.demoUrl === undefined) p.demoUrl = p.linkUrl || '';
+      if (p.sourceUrl === undefined) p.sourceUrl = '';
+      delete p.linkLabel;
+      delete p.linkUrl;
+    }
   }
   return data;
 }
@@ -442,8 +450,8 @@ function buildProjectsPanel(container) {
     { key: 'title', label: 'Title' },
     { key: 'desc', label: 'Description', tag: 'textarea' },
     { key: 'thumb', label: 'Thumbnail URL', type: 'url', preview: true },
-    { key: 'linkLabel', label: 'Link Label' },
-    { key: 'linkUrl', label: 'Link URL', type: 'url' }
+    { key: 'demoUrl', label: 'Live Demo URL', type: 'url' },
+    { key: 'sourceUrl', label: 'Source URL', type: 'url' }
   ], container);
 }
 

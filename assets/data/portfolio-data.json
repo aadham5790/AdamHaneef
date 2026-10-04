@@ -22,9 +22,9 @@
     { "name": "Javaabu Academy", "period": "2022", "desc": "Social Media Marketing Masterclass" }
   ],
   "projects": [
-    { "title": "Design Portfolio", "desc": "Brand identity, graphic design, and visual communication projects for clients and personal work.", "thumb": "https://picsum.photos/seed/design/800/500", "linkLabel": "View Work", "linkUrl": "#" },
-    { "title": "Photography", "desc": "Portrait, landscape, and documentary photography capturing life and culture in the Maldives.", "thumb": "https://picsum.photos/seed/photography/800/500", "linkLabel": "View Gallery", "linkUrl": "#" },
-    { "title": "Entrepreneurship Ventures", "desc": "Founding Saalhanga and Kudahuvadhoo Online. Building businesses and creating opportunities.", "thumb": "https://picsum.photos/seed/ventures/800/500", "linkLabel": "Learn More", "linkUrl": "#" }
+    { "title": "Design Portfolio", "desc": "Brand identity, graphic design, and visual communication projects for clients and personal work.", "thumb": "https://picsum.photos/seed/design/800/500", "demoUrl": "", "sourceUrl": "" },
+    { "title": "Photography", "desc": "Portrait, landscape, and documentary photography capturing life and culture in the Maldives.", "thumb": "https://picsum.photos/seed/photography/800/500", "demoUrl": "", "sourceUrl": "" },
+    { "title": "Entrepreneurship Ventures", "desc": "Founding Saalhanga and Kudahuvadhoo Online. Building businesses and creating opportunities.", "thumb": "https://picsum.photos/seed/ventures/800/500", "demoUrl": "", "sourceUrl": "" }
   ],
   "community": [
     "Dawah Volunteer — United Islamic Society",

@@ -307,25 +307,29 @@ function applyCMSData(data) {
         const body = document.createElement("div");
         body.className = "proj-body";
         body.innerHTML = `<div class="proj-title" id="p${i + 1}">${p.title || ""}</div><div class="proj-desc">${p.desc || ""}</div>`;
-        const actions = document.createElement("div");
-        actions.className = "proj-actions";
-        if ((p.linkUrl || p.linkLabel)) {
-          const a1 = document.createElement("a");
-          a1.className = "btn-primary";
-          a1.href = p.linkUrl || "#";
-          a1.target = "_blank";
-          a1.rel = "noopener";
-          a1.textContent = p.linkLabel || "View";
+        const demo = (p.demoUrl || p.linkUrl || '');
+        const src = p.sourceUrl || '';
+        const actions = document.createElement('div');
+        actions.className = 'proj-actions';
+        if (demo && demo !== '#') {
+          const a1 = document.createElement('a');
+          a1.className = 'btn-primary';
+          a1.href = demo;
+          a1.target = '_blank';
+          a1.rel = 'noopener';
+          a1.textContent = 'Live Demo';
           actions.appendChild(a1);
-          const a2 = document.createElement("a");
-          a2.className = "btn-ghost";
-          a2.href = p.linkUrl || "#";
-          a2.target = "_blank";
-          a2.rel = "noopener";
-          a2.textContent = "Details";
+        }
+        if (src && src !== '#') {
+          const a2 = document.createElement('a');
+          a2.className = 'btn-ghost';
+          a2.href = src;
+          a2.target = '_blank';
+          a2.rel = 'noopener';
+          a2.textContent = 'Source';
           actions.appendChild(a2);
         }
-        body.appendChild(actions);
+        if (actions.childNodes.length) body.appendChild(actions);
         art.appendChild(thumb);
         art.appendChild(body);
         projGrid.appendChild(art);
