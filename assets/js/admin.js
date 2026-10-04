@@ -14,7 +14,7 @@ const DEFAULT_DATA = {
     counters: { projects: 3, skills: 6, focus: 100 }
   },
   about: {
-    bio: 'Self-motivated entrepreneur, designer, artist, and photographer. Founder of Saalhaga and Manager at Argo (Bright Brothers Pvt Ltd). Dawah volunteer at United Islamic Society. I share projects and lessons learned so others can achieve their goals.',
+    bio: 'Self-motivated entrepreneur, designer, artist, and photographer. Founder of Saalhanga and Manager at Argo (Bright Brothers Pvt Ltd). Dawah volunteer at United Islamic Society. I share projects and lessons learned so others can achieve their goals.',
     tagline: 'A little boy who grew up at the heart of Maldives with the love of his family, who tries to find ultimate happiness.'
   },
   experience: [
@@ -30,7 +30,7 @@ const DEFAULT_DATA = {
   projects: [
     { title: 'Design Portfolio', desc: 'Brand identity, graphic design, and visual communication projects for clients and personal work.', thumb: 'https://picsum.photos/seed/design/800/500', linkLabel: 'View Work', linkUrl: '#' },
     { title: 'Photography', desc: 'Portrait, landscape, and documentary photography capturing life and culture in the Maldives.', thumb: 'https://picsum.photos/seed/photography/800/500', linkLabel: 'View Gallery', linkUrl: '#' },
-    { title: 'Entrepreneurship Ventures', desc: 'Founding Saalhaga and managing Argo operations. Building businesses and creating opportunities.', thumb: 'https://picsum.photos/seed/ventures/800/500', linkLabel: 'Learn More', linkUrl: '#' }
+    { title: 'Entrepreneurship Ventures', desc: 'Founding Saalhanga and managing Argo operations. Building businesses and creating opportunities.', thumb: 'https://picsum.photos/seed/ventures/800/500', linkLabel: 'Learn More', linkUrl: '#' }
   ],
   community: [
     'Dawah Volunteer — United Islamic Society',
