@@ -18,7 +18,8 @@
   "education": [
     { "name": "Dh Atoll Education Center", "period": "1994 – 2003", "desc": "Secondary Education" },
     { "name": "CITM", "period": "2011 – 2012", "desc": "Diploma in Information Technology" },
-    { "name": "Mobile Computer Training Center", "period": "", "desc": "Practical PC Usage Basics" }
+    { "name": "Mobile Computer Training Center", "period": "", "desc": "Practical PC Usage Basics" },
+    { "name": "Javaabu Academy", "period": "2022", "desc": "Social Media Marketing Masterclass" }
   ],
   "projects": [
     { "title": "Design Portfolio", "desc": "Brand identity, graphic design, and visual communication projects for clients and personal work.", "thumb": "https://picsum.photos/seed/design/800/500", "linkLabel": "View Work", "linkUrl": "#" },
