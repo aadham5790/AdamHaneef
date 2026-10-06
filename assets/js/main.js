@@ -137,35 +137,29 @@ revealEls.forEach((el) => observer.observe(el));
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+    
+    // Honeypot check - if bot-field is filled, it's likely a bot
+    const botField = form.querySelector("#bot-field");
+    if (botField && botField.value) {
+      return; // Silently ignore bot submissions
+    }
+
     btn.disabled = true;
     btn.textContent = "Sending...";
     msg.textContent = "";
 
     const data = new FormData(form);
-    const userId = form.getAttribute("data-emailjs-user");
-    const serviceId = form.getAttribute("data-emailjs-service");
-    const templateId = form.getAttribute("data-emailjs-template");
-
-    if (userId && serviceId && templateId && typeof emailjs !== "undefined") {
-      emailjs
-        .sendForm(serviceId, templateId, form, userId)
-        .then(() => {
-          msg.style.color = "#8fe39a";
-          msg.textContent = "Message sent — thank you!";
-          form.reset();
-        })
-        .catch(() => {
-          mailtoFallback(data);
-        })
-        .finally(() => {
-          btn.disabled = false;
-          btn.textContent = "Send message";
-        });
-    } else {
-      mailtoFallback(data);
+    mailtoFallback(data);
+    
+    msg.style.color = "#8fe39a";
+    msg.textContent = "Opening mail client...";
+    form.reset();
+    
+    setTimeout(() => {
       btn.disabled = false;
       btn.textContent = "Send message";
-    }
+      msg.textContent = "";
+    }, 2000);
   });
 })();
 
