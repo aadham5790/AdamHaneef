@@ -383,15 +383,9 @@ section {
 
 .proj-thumb {
   flex: 1;
+  background-size: cover;
+  background-position: center;
   min-height: 140px;
-  overflow: hidden;
-}
-
-.proj-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 .proj-body {
@@ -477,13 +471,13 @@ section {
   border-radius: 10px;
   border: 1px solid var(--border);
   color: var(--muted);
-  text-decoration: none.
+  text-decoration: none;
   transition: all 0.18s;
 }
 
 .hero-link-secondary:hover {
   color: #16a34a;
-  transform: translateY(-3px).
+  transform: translateY(-3px);
 }
 
 .section-grid {
@@ -509,7 +503,7 @@ section {
 .form-row {
   display: flex;
   gap: 12px;
-  align-items: center.
+  align-items: center;
 }
 
 .form-msg {
@@ -517,7 +511,7 @@ section {
 }
 
 .contact-grid-item {
-  min-width: 260px.
+  min-width: 260px;
 }
 
 @media (max-width: 980px) {
@@ -527,197 +521,180 @@ section {
 }
 
 .brand .profile-subtitle {
-  font-size: 12px.
+  font-size: 12px;
 }
 
 .form-card label {
-  display: block.
-  margin-top: 12px.
-  font-size: 14px.
-  color: var(--muted).
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--muted);
 }
 
 .form-card label:first-of-type {
-  margin-top: 0.
+  margin-top: 0;
 }
 
 .contact-socials {
-  display: flex.
-  gap: 8px.
-  flex-wrap: wrap.
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .contact-title {
-  margin: 0 0 8px.
+  margin: 0 0 8px;
 }
 
 .contact-desc {
-  margin: 0 0 12px.
+  margin: 0 0 12px;
 }
 
 .sr-only {
-  position: absolute.
-  width: 1px.
-  height: 1px.
-  padding: 0.
-  margin: -1px.
-  overflow: hidden.
-  clip: rect(0, 0, 0, 0).
-  white-space: nowrap.
-  border: 0.
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .footer-note {
-  opacity: 0.9.
-  color: var(--muted).
+  opacity: 0.9;
+  color: var(--muted);
 }
 
 .form-card {
-  background: var(--card).
-  padding: 18px.
-  border-radius: 12px.
+  background: var(--card);
+  padding: 18px;
+  border-radius: 12px;
 }
 
 .form-card input,
 .form-card textarea {
-  width: 100%.
-  padding: 12px.
-  border-radius: 8px.
-  border: 1px solid var(--border).
-  background: transparent.
-  color: var(--muted).
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
 }
 
 .form-card button {
-  padding: 10px 14px.
-  border-radius: 10px.
-  border: none.
-  background: linear-gradient(90deg, #16a34a, #22c55e).
-  font-weight: 800.
-  color: #07101a.
-  cursor: pointer.
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  font-weight: 800;
+  color: #07101a;
+  cursor: pointer;
 }
 
 .note {
-  color: var(--muted).
-  font-size: 14px.
+  color: var(--muted);
+  font-size: 14px;
 }
 
 footer {
-  padding: 28px 0.
-  color: var(--muted).
-  text-align: center.
+  padding: 28px 0;
+  color: var(--muted);
+  text-align: center;
 }
 
 .reveal {
-  opacity: 0.
-  transform: translateY(24px).
-  transition: all 0.7s cubic-bezier(0.2, 0.9, 0.2, 1).
+  opacity: 0;
+  transform: translateY(24px);
+  transition: all 0.7s cubic-bezier(0.2, 0.9, 0.2, 1);
 }
 
 .no-js .reveal {
-  opacity: 1.
-  transform: none.
+  opacity: 1;
+  transform: none;
 }
 
 .reveal.show {
-  opacity: 1.
-  transform: none.
+  opacity: 1;
+  transform: none;
 }
 
 .show-focus :focus-visible {
-  outline: 2px solid var(--accent).
-  outline-offset: 2px.
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 @media (max-width: 520px) {
   .container {
-    padding: 0 14px.
+    padding: 0 14px;
   }
   .hero-title {
-    font-size: 28px.
+    font-size: 28px;
   }
 }
 
 .tagline {
-  margin-top: 14px.
-  font-style: italic.
+  margin-top: 14px;
+  font-style: italic;
 }
 
 .theme-toggle {
-  width: 44px.
-  height: 44px.
-  border-radius: 50%.
-  border: 1px solid var(--border).
-  background: var(--surface).
-  color: var(--text).
-  cursor: pointer.
-  display: grid.
-  place-items: center.
-  backdrop-filter: blur(8px) saturate(120%).
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3).
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s.
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(8px) saturate(120%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
 }
 
 .theme-toggle:hover {
-  transform: translateY(-2px).
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4).
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
 .theme-toggle:focus-visible {
-  outline: 2px solid var(--accent).
-  outline-offset: 2px.
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .theme-toggle svg {
-  width: 20px.
-  height: 20px.
-  fill: none.
-  stroke: currentColor.
-  stroke-width: 2.
-  stroke-linecap: round.
-  stroke-linejoin: round.
-  position: absolute.
-  transition: opacity 0.2s, transform 0.2s.
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  position: absolute;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
 .theme-toggle .icon-sun {
-  opacity: 0.
-  transform: rotate(90deg) scale(0.5).
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
 }
 
 .theme-toggle .icon-moon {
-  opacity: 1.
-  transform: rotate(0) scale(1).
+  opacity: 1;
+  transform: rotate(0) scale(1);
 }
 
 [data-theme="light"] .theme-toggle .icon-sun {
-  opacity: 1.
-  transform: rotate(0) scale(1).
+  opacity: 1;
+  transform: rotate(0) scale(1);
 }
 
 [data-theme="light"] .theme-toggle .icon-moon {
-  opacity: 0.
-  transform: rotate(-90deg) scale(0.5).
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
 }
-
-/* Theme toggle in nav - ensure it sits next to hamburger */
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.nav nav {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-@media (max-width: 880px) {
-  .nav nav {
-    position: static;
-  }
-}
-

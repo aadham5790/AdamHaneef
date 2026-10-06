@@ -1,5 +1,6 @@
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
 document.documentElement.classList.remove("no-js");
 
 const hamburger = $("#hamburger");
@@ -11,7 +12,7 @@ hamburger &&
     hamburger.setAttribute("aria-expanded", String(isOpen));
   });
 
-('a[href^="#"]').forEach((a) => {
+$$('a[href^="#"]').forEach((a) => {
   a.addEventListener("click", (e) => {
     const href = a.getAttribute("href");
     if (!href || href === "#") return;
@@ -32,11 +33,9 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
-// Typing animation with prefers-reduced-motion
 (function typing() {
   const el = document.getElementById("typing");
   if (!el) return;
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const cmsWords =
     window.__CMS_DATA__ &&
     Array.isArray(window.__CMS_DATA__.hero?.typingWords) &&
@@ -45,12 +44,6 @@ window.addEventListener("keydown", (e) => {
       : null;
   const words =
     cmsWords || ["designs", "photos", "ventures", "art"];
-
-  if (prefersReducedMotion) {
-    el.textContent = words.join(", ");
-    return;
-  }
-
   let wi = 0,
     ci = 0,
     deleting = false;
@@ -79,7 +72,7 @@ window.addEventListener("keydown", (e) => {
   step();
 })();
 
-const revealEls = (".reveal");
+const revealEls = $$(".reveal");
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -92,11 +85,9 @@ const observer = new IntersectionObserver(
 );
 revealEls.forEach((el) => observer.observe(el));
 
-// Counter animation with prefers-reduced-motion
 (function counters() {
-  const nums = (".num");
+  const nums = $$(".num");
   if (!nums.length) return;
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const done = new WeakSet();
   const obs = new IntersectionObserver(
     (entries, o) => {
@@ -107,10 +98,6 @@ revealEls.forEach((el) => observer.observe(el));
             done.add(n);
             if (n.dataset.intervalId) clearInterval(Number(n.dataset.intervalId));
             const target = parseInt(n.dataset.target || "0", 10);
-            if (prefersReducedMotion) {
-              n.textContent = target;
-              return;
-            }
             let current = 0;
             const step = Math.max(1, Math.floor(target / 90));
             const id = setInterval(() => {
@@ -127,7 +114,7 @@ revealEls.forEach((el) => observer.observe(el));
         }
       });
     },
-    { threshold: 0.4, once: true }
+    { threshold: 0.4 }
   );
   const profile = document.querySelector(".stat-row");
   if (profile) obs.observe(profile);
@@ -142,9 +129,9 @@ revealEls.forEach((el) => observer.observe(el));
   function mailtoFallback(data) {
     const addr = "adam@example.com";
     const sub = encodeURIComponent(data.get("subject") || "Portfolio Contact");
-    const body = encodeURIComponent(`Name: ${data.get("name")}\nEmail: ${data.get("email")}\n\n${data.get("message")}`);
-
-
+    const body = encodeURIComponent(
+      `Name: ${data.get("name")}\nEmail: ${data.get("email")}\n\n${data.get("message")}`
+    );
     window.location.href = `mailto:${addr}?subject=${sub}&body=${body}`;
   }
 
@@ -155,9 +142,30 @@ revealEls.forEach((el) => observer.observe(el));
     msg.textContent = "";
 
     const data = new FormData(form);
-    mailtoFallback(data);
-    btn.disabled = false;
-    btn.textContent = "Send message";
+    const userId = form.getAttribute("data-emailjs-user");
+    const serviceId = form.getAttribute("data-emailjs-service");
+    const templateId = form.getAttribute("data-emailjs-template");
+
+    if (userId && serviceId && templateId && typeof emailjs !== "undefined") {
+      emailjs
+        .sendForm(serviceId, templateId, form, userId)
+        .then(() => {
+          msg.style.color = "#8fe39a";
+          msg.textContent = "Message sent — thank you!";
+          form.reset();
+        })
+        .catch(() => {
+          mailtoFallback(data);
+        })
+        .finally(() => {
+          btn.disabled = false;
+          btn.textContent = "Send message";
+        });
+    } else {
+      mailtoFallback(data);
+      btn.disabled = false;
+      btn.textContent = "Send message";
+    }
   });
 })();
 
@@ -189,30 +197,16 @@ function applyTheme(theme) {
   root.setAttribute("data-theme", theme);
 }
 
-function toggleTheme() {
-  const current = root.getAttribute("data-theme");
-  const next = current === "dark" ? "light" : "dark";
-  applyTheme(next);
-  try {
-    localStorage.setItem("theme", next);
-  } catch {}
-}
-
 if (themeToggle) {
-  themeToggle.addEventListener("click", toggleTheme);
+  themeToggle.addEventListener("click", () => {
+    const current = root.getAttribute("data-theme");
+    const next = current === "dark" ? "light" : "dark";
+    applyTheme(next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch {}
+  });
 }
-
-// Keyboard shortcut for theme toggle (t or k)
-document.addEventListener("keydown", (e) => {
-  if ((e.key === "t" || e.key === "k") && !e.ctrlKey && !e.metaKey && !e.altKey) {
-    const activeEl = document.activeElement;
-    if (activeEl && (activeEl.tagName === "INPUT" || activeEl.tagName === "TEXTAREA" || activeEl.isContentEditable)) {
-      return;
-    }
-    e.preventDefault();
-    toggleTheme();
-  }
-});
 
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
   if (!getStoredTheme()) {
@@ -224,15 +218,6 @@ const header = document.querySelector("header");
 window.addEventListener("scroll", () => {
   header?.classList.toggle("scrolled", window.scrollY > 10);
 }, { passive: true });
-
-function isValidHttpsUrl(url) {
-  try {
-    const u = new URL(url);
-    return u.protocol === "https:";
-  } catch {
-    return false;
-  }
-}
 
 function applyCMSData(data) {
   if (!data) return;
@@ -288,22 +273,7 @@ function applyCMSData(data) {
         art.className = "proj-card";
         art.tabIndex = 0;
         art.setAttribute("aria-labelledby", "e" + (i + 1));
-        const body = document.createElement("div");
-        body.className = "proj-body";
-        const titleDiv = document.createElement("div");
-        titleDiv.className = "proj-title";
-        titleDiv.id = "e" + (i + 1);
-        titleDiv.textContent = item.role || "";
-        const descDiv1 = document.createElement("div");
-        descDiv1.className = "proj-desc";
-        descDiv1.textContent = [item.org, item.period].filter(Boolean).join("  ");
-        const descDiv2 = document.createElement("div");
-        descDiv2.className = "proj-desc";
-        descDiv2.textContent = item.desc || "";
-        body.appendChild(titleDiv);
-        body.appendChild(descDiv1);
-        body.appendChild(descDiv2);
-        art.appendChild(body);
+        art.innerHTML = `<div class="proj-body"><div class="proj-title" id="e${i + 1}">${item.role || ""}</div><div class="proj-desc">${[item.org, item.period].filter(Boolean).join(" · ")}</div><div class="proj-desc">${item.desc || ""}</div></div>`;
         expSection.appendChild(art);
       });
     }
@@ -317,18 +287,7 @@ function applyCMSData(data) {
         art.className = "proj-card";
         art.tabIndex = 0;
         art.setAttribute("aria-labelledby", "ed" + (i + 1));
-        const body = document.createElement("div");
-        body.className = "proj-body";
-        const titleDiv = document.createElement("div");
-        titleDiv.className = "proj-title";
-        titleDiv.id = "ed" + (i + 1);
-        titleDiv.textContent = item.name || "";
-        const descDiv = document.createElement("div");
-        descDiv.className = "proj-desc";
-        descDiv.textContent = [item.period, item.desc].filter(Boolean).join("  ");
-        body.appendChild(titleDiv);
-        body.appendChild(descDiv);
-        art.appendChild(body);
+        art.innerHTML = `<div class="proj-body"><div class="proj-title" id="ed${i + 1}">${item.name || ""}</div><div class="proj-desc">${[item.period, item.desc].filter(Boolean).join(" · ")}</div></div>`;
         edSection.appendChild(art);
       });
     }
@@ -344,23 +303,10 @@ function applyCMSData(data) {
         art.setAttribute("aria-labelledby", "p" + (i + 1));
         const thumb = document.createElement("div");
         thumb.className = "proj-thumb";
-        if (p.thumb && isValidHttpsUrl(p.thumb)) {
-          const img = document.createElement("img");
-          img.src = p.thumb;
-          img.alt = "Project: " + (p.title || "");
-          thumb.appendChild(img);
-        }
+        thumb.style.backgroundImage = p.thumb ? "url('" + p.thumb + "')" : "";
         const body = document.createElement("div");
         body.className = "proj-body";
-        const titleDiv = document.createElement("div");
-        titleDiv.className = "proj-title";
-        titleDiv.id = "p" + (i + 1);
-        titleDiv.textContent = p.title || "";
-        const descDiv = document.createElement("div");
-        descDiv.className = "proj-desc";
-        descDiv.textContent = p.desc || "";
-        body.appendChild(titleDiv);
-        body.appendChild(descDiv);
+        body.innerHTML = `<div class="proj-title" id="p${i + 1}">${p.title || ""}</div><div class="proj-desc">${p.desc || ""}</div>`;
         const demo = (p.demoUrl || p.linkUrl || '');
         const src = p.sourceUrl || '';
         const actions = document.createElement('div');
@@ -429,7 +375,3 @@ if (window.__CMS_DATA__) {
   applyCMSData(window.__CMS_DATA__);
 }
 window.addEventListener("cms-data-ready", (e) => applyCMSData(e.detail));
-
-
-
-
