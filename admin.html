@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Admin — Portfolio CMS</title>
+  <title>Admin \u2014 Portfolio CMS</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
   <style>
     #cms-admin { padding: 24px; max-width: 960px; margin: 0 auto; font-family: system-ui, sans-serif; color: #e6edf3; }
@@ -29,19 +29,55 @@
     #cms-admin .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
     #cms-admin .pill { background: #1f6feb; color: #fff; padding: 2px 8px; border-radius: 999px; font-size: .8rem; }
     #cms-admin .status { font-size: .85rem; color: #8b949e; margin-left: auto; }
-  #cms-admin .status.ok { color: #3fb950; }
-  #cms-admin .status.err { color: #ff7b72; }
-  #cms-admin .status.warn { color: #d29922; }
-  #cms-admin input.invalid, #cms-admin textarea.invalid { border-color: #ff7b72; }
-  #cms-admin .img-preview { width: 96px; height: 64px; object-fit: cover; border-radius: 8px; border: 1px solid #30363d; background: #161b22; vertical-align: middle; }
-  #cms-admin .hint { font-size: .8rem; color: #8b949e; margin: 10px 0 0; line-height: 1.4; }
-  #cms-admin .hint.ok { color: #3fb950; }
-  #cms-admin .hint.err { color: #ff7b72; }
-  @media (max-width: 640px) {
-    #cms-admin { padding: 16px; }
-    #cms-admin .row, #cms-admin .row-3 { grid-template-columns: 1fr; }
-    #cms-admin .toolbar .btn { flex: 1 1 auto; }
-  }
+    #cms-admin .status.ok { color: #3fb950; }
+    #cms-admin .status.err { color: #ff7b72; }
+    #cms-admin .status.warn { color: #d29922; }
+    #cms-admin input.invalid, #cms-admin textarea.invalid { border-color: #ff7b72; }
+    #cms-admin .img-preview { width: 96px; height: 64px; object-fit: cover; border-radius: 8px; border: 1px solid #30363d; background: #161b22; vertical-align: middle; }
+    #cms-admin .hint { font-size: .8rem; color: #8b949e; margin: 10px 0 0; line-height: 1.4; }
+    #cms-admin .hint.ok { color: #3fb950; }
+    #cms-admin .hint.err { color: #ff7b72; }
+    @media (max-width: 640px) {
+      #cms-admin { padding: 16px; }
+      #cms-admin .row, #cms-admin .row-3 { grid-template-columns: 1fr; }
+      #cms-admin .toolbar .btn { flex: 1 1 auto; }
+    }
+    #importDiffModal { position: fixed; inset: 0; background: rgba(0,0,0,.7); display: none; z-index: 1000; align-items: center; justify-content: center; padding: 24px; }
+    #importDiffModal.open { display: flex; }
+    #importDiffModal .modal-content { background: #0d1117; border: 1px solid #30363d; border-radius: 12px; width: 100%; max-width: 900px; max-height: 85vh; overflow: hidden; display: flex; flex-direction: column; }
+    #importDiffModal .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid #30363d; }
+    #importDiffModal .modal-header h2 { margin: 0; font-size: 1.1rem; }
+    #importDiffModal .modal-close { background: none; border: none; color: #8b949e; font-size: 1.5rem; cursor: pointer; padding: 0; line-height: 1; }
+    #importDiffModal .modal-close:hover { color: #e6edf3; }
+    #importDiffModal .modal-body { padding: 16px 20px; overflow-y: auto; flex: 1; }
+    #importDiffModal .modal-footer { display: flex; justify-content: flex-end; gap: 8px; padding: 16px 20px; border-top: 1px solid #30363d; }
+    .diff-summary { display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+    .diff-summary .stat { padding: 8px 12px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; font-size: .85rem; }
+    .diff-summary .stat.added { border-color: #2ea043; color: #3fb950; }
+    .diff-summary .stat.removed { border-color: #f85149; color: #ff7b72; }
+    .diff-summary .stat.changed { border-color: #d29922; color: #d29922; }
+    .diff-tree { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .8rem; line-height: 1.5; }
+    .diff-tree .diff-node { padding: 2px 0 2px 16px; position: relative; }
+    .diff-tree .diff-node.added { color: #3fb950; }
+    .diff-tree .diff-node.removed { color: #ff7b72; }
+    .diff-tree .diff-node.changed { color: #d29922; }
+    .diff-tree .diff-node.unchanged { color: #8b949e; }
+    .diff-tree .diff-node::before { content: ""; position: absolute; left: 0; top: 2px; bottom: 2px; width: 2px; }
+    .diff-tree .diff-node.added::before { background: #2ea043; }
+    .diff-tree .diff-node.removed::before { background: #f85149; }
+    .diff-tree .diff-node.changed::before { background: #d29922; }
+    .diff-tree .diff-node.unchanged::before { background: #30363d; }
+    .diff-tree .diff-key { font-weight: 600; }
+    .diff-tree .diff-value { color: #c9d1d9; }
+    .diff-tree .diff-old { color: #ff7b72; text-decoration: line-through; }
+    .diff-tree .diff-new { color: #3fb950; }
+    .diff-tree .diff-array-index { color: #8b949e; font-size: .75rem; }
+    .diff-expand { cursor: pointer; user-select: none; display: inline-block; width: 16px; text-align: center; }
+    .diff-expand.collapsed::after { content: "\u25B6"; }
+    .diff-expand.expanded::after { content: "\u25BC"; }
+    .diff-children { display: none; margin-left: 16px; }
+    .diff-children.expanded { display: block; }
+    .diff-conflict { background: rgba(248, 81, 73, 0.1); border: 1px solid #f85149; border-radius: 6px; padding: 8px; margin: 8px 0; font-size: .8rem; }
   </style>
 </head>
 <body>
@@ -61,6 +97,19 @@
     <div class="tabs" id="tabs" role="tablist"></div>
     <div id="panels"></div>
   </div>
-  <script src="assets/js/admin.js"></script>
+  <div id="importDiffModal" role="dialog" aria-modal="true" aria-labelledby="importDiffTitle">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="importDiffTitle">Import Diff Preview</h2>
+        <button class="modal-close" aria-label="Close diff modal">\u00D7</button>
+      </div>
+      <div class="modal-body" id="importDiffBody"></div>
+      <div class="modal-footer">
+        <button id="diffCancelBtn" class="btn">Cancel</button>
+        <button id="diffApplyBtn" class="btn primary">Apply Changes</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="assets/js/admin.js"></script>
 </body>
 </html>
