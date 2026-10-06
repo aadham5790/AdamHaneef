@@ -127,7 +127,7 @@ revealEls.forEach((el) => observer.observe(el));
   if (!form) return;
 
   function mailtoFallback(data) {
-    const addr = "adam@example.com";
+    const addr = "adhanef@live.com";
     const sub = encodeURIComponent(data.get("subject") || "Portfolio Contact");
     const body = encodeURIComponent(
       `Name: ${data.get("name")}\nEmail: ${data.get("email")}\n\n${data.get("message")}`
